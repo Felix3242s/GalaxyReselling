@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GalaxyReselling</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #4b0082, #8a2be2);
+      color: white;
+      text-align: center;
+    }
 
+    header {
+      padding: 2rem 1rem;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 3rem 1rem;
+    }
+
+    .product {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 2rem;
+      width: 250px;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .product h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GalaxyReselling</h1>
+  </header>
+
+  <section class="products">
+    <div class="product">
+      <h2>FiveM Software & Tools</h2>
+    </div>
+    <div class="product">
+      <h2>Woofers</h2>
+    </div>
+    <div class="product">
+      <h2>Unlock All</h2>
+    </div>
+    <div class="product">
+      <h2>Cleaners</h2>
+    </div>
+    <div class="product">
+      <h2>CoD Technik</h2>
+    </div>
+  </section>
+</body>
+</html>
