@@ -3,109 +3,378 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GalaxyReselling</title>
+  <title>420 Service Shop</title>
   <style>
-    /* Body Styles */
+    /* Reset & Basis */
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #4b0082, #8a2be2);
+      font-family: "Arial", sans-serif;
+      background-color: #0e0e0e;
       color: white;
-      text-align: center;
     }
-
-    /* Navbar Styles */
-    .navbar {
-      background-color: #5e2ca5;
+    a {
       color: white;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-    .nav-buttons a {
-      color: white;
-      margin-left: 1rem;
       text-decoration: none;
-      font-weight: bold;
     }
-    .nav-buttons a:hover {
+    a:hover {
       text-decoration: underline;
     }
 
-    /* Header */
-    header {
-      padding: 2rem 1rem;
-      background-color: rgba(0, 0, 0, 0.3);
+    /* Navbar */
+    nav {
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 2rem;
+      font-weight: bold;
+      font-size: 0.9rem;
     }
-    h1 {
-      font-size: 3rem;
-      margin: 0;
-      letter-spacing: 2px;
+    nav .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: 'Arial Black', Arial, sans-serif;
+    }
+    nav .logo span {
+      color: #bb00ff;
+      font-style: italic;
+    }
+    nav .menu {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+    nav .menu > div, nav .menu > a {
+      cursor: pointer;
+    }
+    nav .menu .dropdown {
+      position: relative;
+    }
+    nav .menu .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 1.8rem;
+      left: 0;
+      background-color: #222;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      white-space: nowrap;
+      z-index: 10;
+    }
+    nav .menu .dropdown:hover .dropdown-content {
+      display: block;
+    }
+    nav .cart, nav .user {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    nav .cart svg, nav .user svg {
+      fill: white;
+      width: 20px;
+      height: 20px;
+    }
+    nav .btn-discord {
+      background-color: #8000ff;
+      color: white;
+      padding: 0.5rem 1.3rem;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-transform: uppercase;
+      border: none;
+    }
+    nav .btn-discord:hover {
+      background-color: #a366ff;
     }
 
-    /* Products Section */
-    .products {
+    /* Main Section */
+    main {
+      padding: 2rem 2rem 4rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      color: #888;
+    }
+    .breadcrumb a {
+      color: #888;
+    }
+    .breadcrumb strong {
+      color: white;
+    }
+
+    /* Title */
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background-color: #111;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 20px rgba(187, 0, 255, 0.5);
+    }
+    .product-card img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      height: 160px;
+    }
+    /* Text overlay bottom-left */
+    .product-label {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #bb00ff;
+      text-shadow: 0 0 8px #bb00ff;
+      font-family: 'Arial Black', Arial, sans-serif;
+    }
+    /* Logo watermark bottom-left small */
+    .product-watermark {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      opacity: 0.7;
+      text-shadow: none;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #111;
+      padding: 3rem 2rem 2rem;
+      margin-top: 4rem;
+      color: #bbb;
+      font-size: 0.9rem;
+    }
+    footer .footer-container {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
       gap: 2rem;
-      padding: 3rem 1rem;
     }
-    .product {
-      background-color: rgba(255, 255, 255, 0.1);
-      border-radius: 12px;
-      padding: 2rem;
-      width: 250px;
-      transition: transform 0.3s, background 0.3s;
-    }
-    .product:hover {
-      transform: translateY(-5px);
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-    .product h2 {
-      font-size: 1.5rem;
+    footer .footer-logo {
+      font-weight: bold;
+      font-size: 1.8rem;
+      color: white;
+      font-family: 'Arial Black', Arial, sans-serif;
       margin-bottom: 1rem;
     }
+    footer .footer-logo span {
+      color: #bb00ff;
+      font-style: italic;
+    }
+    footer .footer-col {
+      flex: 1;
+      min-width: 180px;
+    }
+    footer .footer-col h4 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: white;
+    }
+    footer .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    footer .footer-col ul li {
+      margin-bottom: 0.7rem;
+    }
+    footer .footer-col ul li a {
+      color: #bbb;
+      font-weight: normal;
+    }
+    footer .footer-col ul li a:hover {
+      color: white;
+    }
+    footer .footer-text {
+      max-width: 250px;
+      font-size: 0.8rem;
+      margin-top: 2rem;
+      opacity: 0.7;
+      line-height: 1.4;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Navbar hier einfügen -->
-  <nav class="navbar">
-    <div class="logo">GalaxyReselling</div>
-    <div class="nav-buttons">
-      <a href="#" class="nav-btn">Anmelden</a>
-      <a href="#" class="nav-btn">Registrieren</a>
-      <a href="#" class="nav-btn">Profil</a>
+  <nav>
+    <div class="logo">
+      420<span>Service</span>
+    </div>
+
+    <div class="menu">
+      <a href="#">Home</a>
+      <a href="#" style="border-bottom: 2px solid #bb00ff;">Shop</a>
+
+      <div class="dropdown">
+        Legal ▼
+        <div class="dropdown-content">
+          <a href="#">Terms of Service</a><br />
+          <a href="#">Privacy Policy</a><br />
+          <a href="#">Refund Policy</a><br />
+          <a href="#">About 420-Services</a><br />
+          <a href="#">Contact Us</a>
+        </div>
+      </div>
+
+      <a href="#">Blog</a>
+    </div>
+
+    <div class="menu" style="gap: 1rem;">
+      <!-- Warenkorb Icon -->
+      <div class="cart" title="Warenkorb">
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm10 0c-1.104 0-2 .896-2 2s.896 2 2 2 2-.896 2-2-.896-2-2-2zm-11.38-3.59l.03-.07 1.3-2.94H19v-2h-13.28l-.72-3H3v2h1.5l2.1 8.59a1 1 0 0 0 .82.67z"/></svg>
+        <span>0</span>
+      </div>
+      <!-- User Icon + Login/Register -->
+      <div class="user" title="Login / Register">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.206 0 4-1.794 4-4s-1.794-4-4-4-4 1.794-4 4 1.794 4 4 4zm0 2c-3.309 0-6 2.691-6 6h2a4 4 0 0 1 8 0h2c0-3.309-2.691-6-6-6z"/></svg>
+        <a href="#" style="color: white; font-weight: bold;">Login / Register</a>
+      </div>
+      <button class="btn-discord">DISCORD</button>
     </div>
   </nav>
 
-  <header>
-    <h1>GalaxyReselling</h1>
-  </header>
+  <main>
+    <div class="breadcrumb">
+      <a href="#">Home</a> / <strong>Shop</strong>
+    </div>
 
-  <section class="products">
-    <div class="product">
-      <h2>FiveM Software & Tools</h2>
+    <h1>Shop</h1>
+
+    <div class="product-grid">
+      <!-- Produktkarten -->
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=GTA+V" alt="GTA V" />
+        <div class="product-label">Grand Theft Auto V</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Altis+Life" alt="Altis Life" />
+        <div class="product-label">Altis Life</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Fortnite" alt="Fortnite" />
+        <div class="product-label">Fortnite</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Counter+Strike+2" alt="Counter Strike 2" />
+        <div class="product-label">Counter Strike 2</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Call+of+Duty" alt="Call of Duty" />
+        <div class="product-label">Call of Duty</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Rust" alt="Rust" />
+        <div class="product-label">Rust</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Apex+Legends" alt="Apex Legends" />
+        <div class="product-label">Apex Legends</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Rainbow+Six" alt="Rainbow Six" />
+        <div class="product-label">Rainbow Six</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=Premium+Accounts" alt="Premium Accounts" />
+        <div class="product-label">Premium Accounts</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
+      <div class="product-card">
+        <img src="https://via.placeholder.com/400x160/1a1a1a/bb00ff?text=R%2FV" alt="R/V" />
+        <div class="product-label">R / V</div>
+        <div class="product-watermark">420 Service</div>
+      </div>
     </div>
-    <div class="product">
-      <h2>Woofers</h2>
+  </main>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <div class="footer-logo">420<span>Service</span></div>
+        <div class="footer-text">
+          420-Service is one of the top providers of best-in-class software solutions for gamers. Our areas Of expertise are...
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>LEGAL</h4>
+        <ul>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Refund Policy</a></li>
+          <li><a href="#">About 420-Services</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>MAIN</h4>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><strong>Shop</strong></li>
+          <li><a href="#">My Account</a></li>
+          <li><a href="#">Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>PRODUCTS</h4>
+        <ul>
+          <li><a href="#">FiveM Products</a></li>
+          <li><a href="#">Premium Accounts</a></li>
+          <li><a href="#">Call of Duty Products</a></li>
+          <li><a href="#">GTA 5 Products</a></li>
+          <li><a href="#">Tools</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="product">
-      <h2>Unlock All</h2>
-    </div>
-    <div class="product">
-      <h2>Cleaners</h2>
-    </div>
-    <div class="product">
-      <h2>CoD Technik</h2>
-    </div>
-  </section>
+  </footer>
 
 </body>
 </html>
