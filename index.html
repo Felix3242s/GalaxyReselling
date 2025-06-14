@@ -5,7 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GalaxyReselling</title>
   <style>
-    body {
+    body <nav class="navbar">
+  <div class="logo">GalaxyReselling</div>
+  <div class="nav-buttons">
+    <a href="#" class="nav-btn">Anmelden</a>
+    <a href="#" class="nav-btn">Registrieren</a>
+    <a href="#" class="nav-btn">Profil</a>
+  </div>
+</nav>
+Und mit etwas CSS z. B.:
+
+
+.navbar {
+  background-color: #5e2ca5;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.nav-buttons a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+.nav-buttons a:hover {
+  text-decoration: underline;
+} {
       margin: 0;
       font-family: Arial, sans-serif;
       background: linear-gradient(to bottom, #4b0082, #8a2be2);
